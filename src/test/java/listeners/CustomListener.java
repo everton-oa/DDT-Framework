@@ -16,9 +16,13 @@ public class CustomListener extends TestBase implements ITestListener{
 
 	public void onTestStart(ITestResult result) {
 		test = rep.startTest(result.getName().toUpperCase());
+		test.log(LogStatus.INFO, result.getName() + " started");
+		System.out.print(ANSI_GREEN + "====================> " + result.getName() + " started \n"+ ANSI_RESET);
 	}
 
 	public void onTestSuccess(ITestResult result) {
+		System.out.print(ANSI_GREEN + "====================>" + result.getName() + " successfully executed\n"+ ANSI_RESET);
+		System.out.print(ANSI_GREEN + "###################################################################### \n\n\n\n"+ ANSI_RESET);
 		test.log(LogStatus.PASS, result.getName().toUpperCase() + " PASS");
 		rep.endTest(test);
 		rep.flush();
@@ -33,6 +37,8 @@ public class CustomListener extends TestBase implements ITestListener{
 			e.printStackTrace();
 		}
 		
+		System.out.print(ANSI_RED + "(!) " + result.getName() + " failed\n"+ ANSI_RESET);
+		System.out.print(ANSI_RED + "###################################################################### \n\n\n\n"+ ANSI_RESET);
 		test.log(LogStatus.FAIL, result.getName().toUpperCase() + " FAILED. Exception: " + result.getThrowable());
 		test.log(LogStatus.FAIL, test.addScreenCapture("screenshot/" + TestUtil.screeshotName));
 		rep.endTest(test);
