@@ -1,5 +1,6 @@
 package base;
 
+import org.testng.Reporter;
 import org.testng.annotations.AfterMethod;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -73,6 +74,8 @@ public class TestBase {
 		if (driver != null) {
 			driver.quit();
 		}
+		log.debug("Test completed");
+		Reporter.log("Test completed");
 	}
 	
 	public boolean isElementPresent(By by) {
