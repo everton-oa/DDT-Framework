@@ -16,7 +16,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
+import com.relevantcodes.extentreports.ExtentReports;
+import com.relevantcodes.extentreports.ExtentTest;
+
 import utilities.ExcelReader;
+import utilities.ExtentManager;
 
 public class TestBase {
 	
@@ -27,6 +31,8 @@ public class TestBase {
 	public static Logger log = Logger.getLogger("devpinoyLogger");
 	public static ExcelReader excel = new ExcelReader(System.getProperty("user.dir") + "/src/test/resources/excel/testdata.xlsx");
 	public static WebDriverWait wait;	
+	public ExtentReports rep = ExtentManager.getInstance();
+	public static ExtentTest test;
 	
 	@BeforeSuite
 	public void setUp() {
