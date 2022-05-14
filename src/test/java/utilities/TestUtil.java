@@ -21,6 +21,7 @@ public class TestUtil extends TestBase {
 		File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 		Date date = new Date();
 		screeshotName = date.toString().replace(":", "").replace(" ", "")+".jpg";
+		// TODO formatar hora AAAAMMDD_HHMMSS
 		screeshotPath = System.getProperty("user.dir") + "/target/surefire-reports/html/screenshot/";
 		FileUtils.copyFile(scrFile, new File(screeshotPath + screeshotName));
 	}

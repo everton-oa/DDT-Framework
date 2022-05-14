@@ -56,7 +56,7 @@ public class TestBase {
 		}
 		try {
 			config.load(fis);
-			log.debug("Config loaded");
+			log.info("Config loaded");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -97,6 +97,8 @@ public class TestBase {
 	
 	/*
 	 * Keyword actions
+	 * TODO saber onde colocar as keywords actions para dividir melhor e organizar o projeto.
+	 * TODO criar as keywords necessárias
 	 */
 	
 	public void click(String locator) {
