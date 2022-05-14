@@ -1,7 +1,6 @@
 package base;
 
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -9,11 +8,15 @@ import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
+
+import utilities.ExcelReader;
 
 public class TestBase {
 	
@@ -22,6 +25,8 @@ public class TestBase {
 	public static Properties OR = new Properties();
 	public static FileInputStream fis;
 	public static Logger log = Logger.getLogger("devpinoyLogger");
+	public static ExcelReader excel = new ExcelReader(System.getProperty("user.dir") + "/src/test/resources/excel/testdata.xlsx");
+	public static WebDriverWait wait;	
 	
 	@BeforeSuite
 	public void setUp() {
@@ -60,15 +65,22 @@ public class TestBase {
 		driver.get(config.getProperty("testurl"));
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Integer.parseInt(config.getProperty("implicit.wait")), TimeUnit.SECONDS);
+		wait = new WebDriverWait(driver, 5);
 	}
 	
-	@AfterMethod
 	@AfterSuite
 	public void tearDown() {
 		if (driver != null) {
 			driver.quit();
 		}
-		
 	}
-
+	
+	public boolean isElementPresent(By by) {
+		try {
+			driver.findElement(by);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
 }
