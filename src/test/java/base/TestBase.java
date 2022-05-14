@@ -1,7 +1,6 @@
 package base;
 
 import org.testng.Reporter;
-import org.testng.annotations.AfterMethod;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
