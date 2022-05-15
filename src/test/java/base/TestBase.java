@@ -46,6 +46,9 @@ public class TestBase {
 	public static final String ANSI_RED = "\u001B[31m";
 	public static final String ANSI_RESET = "\u001B[0m";
 
+	// TODO adicionar informacoes ao readme - como clonar e executar o projeto 
+	// TODO criar documentação para os metodos e para que eles servem. adicionar comentarios sobre o que é necessario alterar para utilizar em outro projeto ex: paths ou variaveis
+	
 	@BeforeSuite
 	public void setUp() {
 		try {
@@ -98,7 +101,7 @@ public class TestBase {
 	/*
 	 * Keyword actions
 	 * TODO saber onde colocar as keywords actions para dividir melhor e organizar o projeto.
-	 * TODO criar as keywords necessárias
+	 * TODO criar as keywords necessárias(verificar framework srbarriga)
 	 */
 	
 	public void click(String locator) {
@@ -157,21 +160,27 @@ public class TestBase {
 	
 	/*
 	 * Assertions
-	 */
+	 * 
+	 * TODO implementar melhorias para report e saida do console
+	 * TODO implementar novos assertions
+	 */ 
 	public static void verifyEquals(String actual, String expected) throws IOException {
 		try {
 			assertEquals(actual, expected);
-		} catch (Throwable t) {
+		} catch (Throwable failure) {
 			TestUtil.captureScreenShoot();
 			//ReportNg 
 			// TODO utilizar comentarios  
-			Reporter.log("<br>"+"Verification failed - "+t.getMessage()+"<br>");
-			Reporter.log("<a target=\"_blank\" href=screenshot/"+TestUtil.screeshotName+"><img src=screenshot/"+TestUtil.screeshotName+" height=200 width=200></a>");
-			Reporter.log("<br>");
+			Reporter.log("<br>"+"Verification failed - "+failure.getMessage()+"<br>");
+			// TODO remover todos as referencias para reportng e usar apenas extent report
+			// TODO ou deixar só uma referencia para cada report: ReportNG, ExtentReport, ConsoleOutput
+			// TODO corrigir a forma de pegar a screenshot e a pasta em que as screenshots ficam salvas aula 306
+			// TODO colocar documentacao no codigo para saber o que cada coisa faz
+
 			//Extent Reports
-			test.log(LogStatus.FAIL, "Verification failed - "+t.getMessage());
-			System.out.print(ANSI_RED+ "Verification failed - "+t.getMessage()+"\n"+ ANSI_RESET);
-			test.log(LogStatus.FAIL, test.addScreenCapture(TestUtil.screeshotName));
+			test.log(LogStatus.FAIL, "Verification failed - "+failure.getMessage());
+			test.log(LogStatus.FAIL, test.addScreenCapture("screenshot/" + TestUtil.screeshotName));
+			System.out.print(ANSI_RED+ "Verification failed - "+failure.getMessage()+"\n"+ ANSI_RESET);
 		}
 	}
 }

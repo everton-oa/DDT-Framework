@@ -1,5 +1,7 @@
 package testcases;
 
+import java.io.IOException;
+
 import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.Test;
@@ -7,7 +9,8 @@ import base.TestBase;
 
 public class BankManagerLoginTest extends TestBase{
 	@Test
-	public void loginAsBankManagerTest() {
+	public void loginAsBankManagerTest() throws IOException {
+		verifyEquals("1", "2");
 		click("bankManagerLoginBtn_CSS");
 		log.debug("Login test successfully executed");
 		// TODO log que envia para o arquivo application.log

@@ -8,6 +8,7 @@ import java.util.Date;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.testng.Reporter;
 import org.testng.annotations.DataProvider;
 
 import base.TestBase;
@@ -18,6 +19,10 @@ public class TestUtil extends TestBase {
 	public static String screeshotName;
 	
 	public static void captureScreenShoot() throws IOException {
+		// TODO Todos os logs referentes a capturar screenshot devem estar aqui e nao nos metodos em que este medoto é chamado
+		// TODO adicionar logs para extent, console e reportng aqui
+		Reporter.log("Capturing screenshot");
+
 		File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 		Date date = new Date();
 		screeshotName = date.toString().replace(":", "").replace(" ", "")+".jpg";
