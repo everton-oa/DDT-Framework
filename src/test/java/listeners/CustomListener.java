@@ -5,7 +5,6 @@ import java.io.IOException;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
-import org.testng.SkipException;
 
 import com.relevantcodes.extentreports.LogStatus;
 
@@ -24,7 +23,6 @@ public class CustomListener extends TestBase implements ITestListener{
 
 	public void onTestSuccess(ITestResult result) {
 		System.out.print(ANSI_GREEN + "====================>" + result.getName() + " successfully executed\n"+ ANSI_RESET);
-		System.out.print(ANSI_GREEN + "###################################################################### \n\n\n\n"+ ANSI_RESET);
 		test.log(LogStatus.PASS, result.getName().toUpperCase() + " PASS");
 		rep.endTest(test);
 		rep.flush();

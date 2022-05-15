@@ -1,5 +1,6 @@
 package testcases;
 
+import java.io.IOException;
 import java.util.Hashtable;
 
 import org.openqa.selenium.Alert;
@@ -14,11 +15,12 @@ import utilities.TestUtil;
 public class AddCustomerTest extends TestBase {
 
 	@Test (dataProviderClass = TestUtil.class, dataProvider = "dp")
-	public void addCustomerTest(Hashtable<String, String> data) {
+	public void addCustomerTest(Hashtable<String, String> data) throws IOException {
 		if (!data.get("runmode").equalsIgnoreCase("y")) {
 			throw new SkipException("");
 		}
-		
+		verifyEquals("1", "1");
+		click("bankManagerLoginBtn_CSS");
 		click("addCustomerBtn_CSS");
 		type("firstNameField_CSS", data.get("firstname"));
 		type("lastNameField_XPATH", data.get("lastname"));

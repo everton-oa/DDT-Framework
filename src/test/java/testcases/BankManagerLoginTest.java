@@ -10,7 +10,6 @@ import base.TestBase;
 public class BankManagerLoginTest extends TestBase{
 	@Test
 	public void bankManagerLoginTest() throws IOException {
-		verifyEquals("1", "2");
 		click("bankManagerLoginBtn_CSS");
 		log.debug("Login test successfully executed");
 		// TODO log que envia para o arquivo application.log
@@ -20,6 +19,5 @@ public class BankManagerLoginTest extends TestBase{
 		// TODO logs para o extent report podem ser melhor formatados
 		// TODO saidas do console para todos os logs que vao para o extent report
 		// TODO para cara saida no console, tem uma saida para extent report. podem haver diferencas na formatacao para ficar mais adequado
-		Assert.fail();
 	}
 }

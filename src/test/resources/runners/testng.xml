@@ -25,5 +25,11 @@
 		</classes>
 	</test> <!-- Test -->
 
+	<test name="Report Failed And Skipped Test">
+		<classes>
+			<class name="testcases.ReportFailedAndSkippedTest" />
+		</classes>
+	</test> <!-- Test -->
+
 
 </suite> <!-- Suite -->

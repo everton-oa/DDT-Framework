@@ -17,6 +17,7 @@ public class OpenAccountTest extends TestBase {
 		if (!TestUtil.isTestRunnable("OpenAccountTest", excel)) {
 			throw new SkipException("");
 		}
+		click("bankManagerLoginBtn_CSS");
 		click("openAccountBtn_CSS");
 		select("customerNameDd_ID", data.get("customer"));
 		select("currencyDd_ID", data.get("currency"));
