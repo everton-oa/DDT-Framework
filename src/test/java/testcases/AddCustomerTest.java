@@ -1,5 +1,7 @@
 package testcases;
 
+import java.util.Hashtable;
+
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
@@ -12,19 +14,19 @@ import utilities.TestUtil;
 public class AddCustomerTest extends TestBase {
 
 	@Test (dataProviderClass = TestUtil.class, dataProvider = "dp")
-	public void addCustomerTest(String firstName, String lastName, String postCode, String alertText, String runMode) {
-		if (!runMode.equalsIgnoreCase("y")) {
+	public void addCustomerTest(Hashtable<String, String> data) {
+		if (!data.get("runmode").equalsIgnoreCase("y")) {
 			throw new SkipException("");
 		}
 		
 		click("addCustomerBtn_CSS");
-		type("firstNameField_CSS", firstName);
-		type("lastNameField_XPATH", lastName);
-		type("postCodeField_CSS", postCode);
+		type("firstNameField_CSS", data.get("firstname"));
+		type("lastNameField_XPATH", data.get("lastname"));
+		type("postCodeField_CSS", data.get("postcode"));
 		click("addBtn_CSS");
 		
 		Alert alert = wait.until(ExpectedConditions.alertIsPresent());
-		Assert.assertTrue(alert.getText().contains(alertText));
+		Assert.assertTrue(alert.getText().contains(data.get("alerttext")));
 		alert.accept();
 	}
 }
