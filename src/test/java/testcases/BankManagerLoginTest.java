@@ -9,7 +9,7 @@ import base.TestBase;
 
 public class BankManagerLoginTest extends TestBase{
 	@Test
-	public void loginAsBankManagerTest() throws IOException {
+	public void bankManagerLoginTest() throws IOException {
 		verifyEquals("1", "2");
 		click("bankManagerLoginBtn_CSS");
 		log.debug("Login test successfully executed");

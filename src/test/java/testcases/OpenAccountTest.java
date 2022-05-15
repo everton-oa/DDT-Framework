@@ -4,6 +4,7 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
+import org.testng.SkipException;
 import org.testng.annotations.Test;
 
 import base.TestBase;
@@ -13,7 +14,9 @@ public class OpenAccountTest extends TestBase {
 	
 	@Test (dataProviderClass = TestUtil.class, dataProvider = "dp")
 	public void openAccountTest (String customer, String currency, String runMode) {
-		
+		if (!TestUtil.isTestRunnable("openAccountTest", excel)) {
+			throw new SkipException("Skipping openAccountTest as the runner mode is NO");
+		}
 		click("openAccountBtn_CSS");
 		select("customerNameDd_ID", customer);
 		select("currencyDd_ID", currency);

@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
+import org.testng.SkipException;
 
 import com.relevantcodes.extentreports.LogStatus;
 
@@ -18,6 +19,7 @@ public class CustomListener extends TestBase implements ITestListener{
 		test.log(LogStatus.INFO, result.getName() + " started");
 		// TODO log que vai para o arquivo extent.html
 		System.out.print(ANSI_GREEN + "====================> " + result.getName() + " started \n"+ ANSI_RESET);
+		// adicionando run modes para executar apenas os testes escolhidos na planilha do excel
 	}
 
 	public void onTestSuccess(ITestResult result) {
@@ -48,8 +50,9 @@ public class CustomListener extends TestBase implements ITestListener{
 	}
 
 	public void onTestSkipped(ITestResult result) {
-		// TODO Auto-generated method stub
-		
+		test.log(LogStatus.SKIP, result.getName() + " as the runner mode is NO");
+		rep.endTest(test);
+		rep.flush();
 	}
 
 	public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
