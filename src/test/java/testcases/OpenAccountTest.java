@@ -14,8 +14,8 @@ public class OpenAccountTest extends TestBase {
 	
 	@Test (dataProviderClass = TestUtil.class, dataProvider = "dp")
 	public void openAccountTest (String customer, String currency, String runMode) {
-		if (!TestUtil.isTestRunnable("openAccountTest", excel)) {
-			throw new SkipException("Skipping openAccountTest as the runner mode is NO");
+		if (!TestUtil.isTestRunnable("OpenAccountTest", excel)) {
+			throw new SkipException("");
 		}
 		click("openAccountBtn_CSS");
 		select("customerNameDd_ID", customer);

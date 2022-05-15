@@ -15,7 +15,7 @@ import utilities.TestUtil;
 public class CustomListener extends TestBase implements ITestListener{
 
 	public void onTestStart(ITestResult result) {
-		test = rep.startTest(result.getName().toUpperCase());
+		test = rep.startTest(result.getName());
 		test.log(LogStatus.INFO, result.getName() + " started");
 		// TODO log que vai para o arquivo extent.html
 		System.out.print(ANSI_GREEN + "====================> " + result.getName() + " started \n"+ ANSI_RESET);
@@ -50,9 +50,10 @@ public class CustomListener extends TestBase implements ITestListener{
 	}
 
 	public void onTestSkipped(ITestResult result) {
-		test.log(LogStatus.SKIP, result.getName() + " as the runner mode is NO");
+		test.log(LogStatus.SKIP, "Skipping the test " + result.getName() + " as the runner mode is NO");
 		rep.endTest(test);
 		rep.flush();
+		// TODO adicinar log para console
 	}
 
 	public void onTestFailedButWithinSuccessPercentage(ITestResult result) {

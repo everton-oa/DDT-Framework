@@ -51,7 +51,7 @@ public class TestUtil extends TestBase {
 		int rows = excel.getRowCount(sheetName);
 		
 		for (int rNum=2; rNum<=rows; rNum++) {
-			String testCase = excel.getCellData(sheetName, "TCID", rNum);
+			String testCase = excel.getCellData(sheetName, "tcid", rNum);
 			if (testCase.equalsIgnoreCase(testName)) {
 				String runMode = excel.getCellData(sheetName, "runmode", rNum);
 				if (runMode.equalsIgnoreCase("Y"))

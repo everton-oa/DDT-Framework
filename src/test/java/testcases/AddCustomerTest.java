@@ -3,6 +3,7 @@ package testcases;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
+import org.testng.SkipException;
 import org.testng.annotations.Test;
 
 import base.TestBase;
@@ -12,6 +13,10 @@ public class AddCustomerTest extends TestBase {
 
 	@Test (dataProviderClass = TestUtil.class, dataProvider = "dp")
 	public void addCustomerTest(String firstName, String lastName, String postCode, String alertText, String runMode) {
+		if (!runMode.equalsIgnoreCase("y")) {
+			throw new SkipException("");
+		}
+		
 		click("addCustomerBtn_CSS");
 		type("firstNameField_CSS", firstName);
 		type("lastNameField_XPATH", lastName);
