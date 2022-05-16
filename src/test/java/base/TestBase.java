@@ -11,6 +11,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.SkipException;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import utilities.ExcelReader;
@@ -39,6 +40,7 @@ public class TestBase {
     public ExtentReports rep = ExtentManager.getInstance();
 
     public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_BLUE = "\u001B[34m";
     public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_RESET = "\u001B[0m";
 
@@ -89,7 +91,7 @@ public class TestBase {
             driver.quit();
         }
         log.debug("Test completed\n");
-        System.out.print(ANSI_GREEN + "###################################################################### \n\n\n\n" + ANSI_RESET);
+        System.out.print(ANSI_GREEN + "###################################################################### \n\n" + ANSI_RESET);
     }
 
     /*
@@ -152,6 +154,12 @@ public class TestBase {
         }
     }
 
+    // TODO este metodo está dentro da classe testutil
+    public void isTestRunnable(String runMode) {
+        if (runMode.equalsIgnoreCase("n")) {
+            throw new SkipException("");
+        }
+    }
     /*
      * Assertions
      *
@@ -163,22 +171,18 @@ public class TestBase {
             log.debug("Verification successfully executed - Actual result: " + actual + " => Expected result: " + expected);
             System.out.print(ANSI_GREEN + "Verification successfully executed - Actual result: " + actual + " => Expected result: " + expected + "\n" + ANSI_RESET);
         } catch (Throwable failure) {
-            TestUtil.captureScreenShoot();
-
-            test.log(LogStatus.FAIL, "Verification failed - " + failure.getMessage());
-            test.log(LogStatus.INFO, test.addScreenCapture("screenshot/" + TestUtil.screeshotName));
+            test.log(LogStatus.WARNING, "Verification failed - " + failure.getMessage());
             log.debug("Verification failed - " + failure.getMessage());
-            System.out.print(ANSI_GREEN + "Verification failed - " + failure.getMessage() + "\n" + ANSI_RESET);
+            System.out.print(ANSI_RED + "Verification failed - " + failure.getMessage() + "\n" + ANSI_RESET);
+
+            TestUtil.captureScreenShoot();
         }
     }
 }
 
 // TODO utilizar comentarios
-// TODO remover todos as referencias para reportng e usar apenas extent report
-// TODO ou deixar só uma referencia para cada report: ReportNG, ExtentReport, ConsoleOutput
 // TODO corrigir a forma de pegar a screenshot e a pasta em que as screenshots ficam salvas aula 306
 // TODO colocar documentacao no codigo para saber o que cada coisa faz
-// TODO implementar melhorias para report e saida do console
 // TODO implementar novos assertions
 // TODO saber onde colocar as keywords actions para dividir melhor e organizar o projeto.
 // TODO criar as keywords necessárias(verificar framework srbarriga)

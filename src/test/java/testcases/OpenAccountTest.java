@@ -17,6 +17,7 @@ public class OpenAccountTest extends TestBase {
 		if (!TestUtil.isTestRunnable("OpenAccountTest", excel)) {
 			throw new SkipException("");
 		}
+		// TODO como utilizar o istestrunnable para fazer verificacao da tab testsuite e da tab do test
 		click("bankManagerLoginBtn_CSS");
 		click("openAccountBtn_CSS");
 		select("customerNameDd_ID", data.get("customer"));

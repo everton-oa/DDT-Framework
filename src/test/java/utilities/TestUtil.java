@@ -3,9 +3,11 @@ package utilities;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Hashtable;
 
+import com.relevantcodes.extentreports.LogStatus;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -20,16 +22,17 @@ public class TestUtil extends TestBase {
 	public static String screeshotName;
 	
 	public static void captureScreenShoot() throws IOException {
-		// TODO Todos os logs referentes a capturar screenshot devem estar aqui e nao nos metodos em que este medoto é chamado
-		// TODO adicionar logs para extent, console e reportng aqui
-		Reporter.log("Capturing screenshot");
 
 		File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-		Date date = new Date();
-		screeshotName = date.toString().replace(":", "").replace(" ", "")+".jpg";
-		// TODO formatar hora AAAAMMDD_HHMMSS
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+		screeshotName = simpleDateFormat.format(new Date())+".jpg";
 		screeshotPath = System.getProperty("user.dir") + "/target/surefire-reports/html/screenshot/";
 		FileUtils.copyFile(scrFile, new File(screeshotPath + screeshotName));
+
+		test.log(LogStatus.INFO, "Screenshot captured");
+		test.log(LogStatus.INFO, test.addScreenCapture("screenshot/" + TestUtil.screeshotName));
+		log.debug("Screenshot captured. -> target/surefire-reports/html/screenshot/" + screeshotName);
+		System.out.print(ANSI_RED + "Screenshot captured. -> target/surefire-reports/html/screenshot/" + screeshotName + "\n" + ANSI_RESET);
 	}
 	
 	@DataProvider(name="dp")

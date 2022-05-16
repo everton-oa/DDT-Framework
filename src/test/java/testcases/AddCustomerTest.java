@@ -16,10 +16,8 @@ public class AddCustomerTest extends TestBase {
 
 	@Test (dataProviderClass = TestUtil.class, dataProvider = "dp")
 	public void addCustomerTest(Hashtable<String, String> data) throws IOException {
-		if (!data.get("runmode").equalsIgnoreCase("y")) {
-			throw new SkipException("");
-		}
-		verifyEquals("1", "1");
+		isTestRunnable(data.get("runmode"));
+		verifyEquals("1", "2");
 		click("bankManagerLoginBtn_CSS");
 		click("addCustomerBtn_CSS");
 		type("firstNameField_CSS", data.get("firstname"));

@@ -16,9 +16,7 @@ public class CustomListener extends TestBase implements ITestListener{
 	public void onTestStart(ITestResult result) {
 		test = rep.startTest(result.getName());
 		test.log(LogStatus.INFO, result.getName() + " started");
-		// TODO log que vai para o arquivo extent.html
 		System.out.print(ANSI_GREEN + "====================> " + result.getName() + " started \n"+ ANSI_RESET);
-		// adicionando run modes para executar apenas os testes escolhidos na planilha do excel
 	}
 
 	public void onTestSuccess(ITestResult result) {
@@ -29,43 +27,37 @@ public class CustomListener extends TestBase implements ITestListener{
 	}
 
 	public void onTestFailure(ITestResult result) {
-		System.setProperty("org.uncommons.reportng.escape-output", "false");
+		test.log(LogStatus.FAIL, result.getName() + " FAILED. Exception: " + result.getThrowable());
+		System.out.print(ANSI_RED + "(!) " + result.getName() + " FAILED\n"+ ANSI_RESET);
+
 		try {
 			TestUtil.captureScreenShoot();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		System.out.print(ANSI_RED + "(!) " + result.getName() + " failed\n"+ ANSI_RESET);
-		System.out.print(ANSI_RED + "###################################################################### \n\n\n\n"+ ANSI_RESET);
-		test.log(LogStatus.FAIL, result.getName() + " FAILED. Exception: " + result.getThrowable());
-		test.log(LogStatus.FAIL, "stepName", result.getThrowable());
-		// TODO adicionar este logstatus em outros locais para exibir stacktrace no relatorio
-		test.log(LogStatus.FAIL, test.addScreenCapture("screenshot/" + TestUtil.screeshotName));
+
+		test.log(LogStatus.ERROR, "stepName", result.getThrowable());
 		rep.endTest(test);
 		rep.flush();
 	}
 
 	public void onTestSkipped(ITestResult result) {
-		test.log(LogStatus.SKIP, "Skipping the test " + result.getName() + " as the runner mode is NO");
+		test.log(LogStatus.SKIP, result.getName() + " SKIPPED. Runner mode is NO");
+		log.debug(result.getName() + " SKIPPED. Runner mode is NO ");
+		System.out.print(ANSI_BLUE + "(!) " + result.getName() + " SKIPPED. Runner mode is NO \n" + ANSI_RESET);
 		rep.endTest(test);
 		rep.flush();
-		// TODO adicinar log para console
 	}
 
 	public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void onStart(ITestContext context) {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void onFinish(ITestContext context) {
-		// TODO Auto-generated method stub
-		
+
 	}
 }
