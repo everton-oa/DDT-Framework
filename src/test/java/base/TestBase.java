@@ -116,9 +116,12 @@ public class TestBase {
     public void type(String locator, String value) {
         if (locator.endsWith("_CSS")) {
             driver.findElement(By.cssSelector(OR.getProperty(locator))).sendKeys(value);
+            driver.findElement(By.cssSelector(OR.getProperty(locator))).clear();
         } else if (locator.endsWith("_XPATH")) {
+            driver.findElement(By.cssSelector(OR.getProperty(locator))).clear();
             driver.findElement(By.xpath(OR.getProperty(locator))).sendKeys(value);
         } else if (locator.endsWith("_ID")) {
+            driver.findElement(By.cssSelector(OR.getProperty(locator))).clear();
             driver.findElement(By.id(OR.getProperty(locator))).sendKeys(value);
         }
         test.log(LogStatus.INFO, "Typed " + value + " on " + locator);
