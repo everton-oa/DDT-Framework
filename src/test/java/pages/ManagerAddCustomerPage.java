@@ -1,6 +1,8 @@
 package pages;
 
-public class ManagerAddCustomerPage {
+import base.BasePage;
+
+public class ManagerAddCustomerPage extends BasePage {
 
     public void typeFirstName() {
 
@@ -14,7 +16,7 @@ public class ManagerAddCustomerPage {
 
     }
 
-    public void selectAddCustomerButton() {
+    public void clickAddCustomerButton() {
 
     }
 }

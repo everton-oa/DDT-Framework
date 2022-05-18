@@ -8,10 +8,10 @@ import org.testng.ITestResult;
 
 import com.relevantcodes.extentreports.LogStatus;
 
-import base.TestBase;
+import base.BaseTest;
 import utilities.TestUtil;
 
-public class CustomListener extends TestBase implements ITestListener{
+public class CustomListener extends BaseTest implements ITestListener{
 
 	public void onTestStart(ITestResult result) {
 		test = rep.startTest(result.getName());
@@ -27,7 +27,7 @@ public class CustomListener extends TestBase implements ITestListener{
 	}
 
 	public void onTestFailure(ITestResult result) {
-		test.log(LogStatus.FAIL, result.getName() + " FAILED. Exception: " + result.getThrowable());
+		test.log(LogStatus.FAIL, result.getName() + " FAILED.");
 		System.out.print(ANSI_RED + "(!) " + result.getName() + " FAILED\n"+ ANSI_RESET);
 
 		try {

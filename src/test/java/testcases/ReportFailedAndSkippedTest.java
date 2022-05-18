@@ -1,11 +1,11 @@
 package testcases;
 
-import base.TestBase;
+import base.BaseTest;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
 
-public class ReportFailedAndSkippedTest extends TestBase {
+public class ReportFailedAndSkippedTest extends BaseTest {
 	
 	@Test
 	public void ReportFailedTest() throws IOException {

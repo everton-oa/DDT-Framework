@@ -7,10 +7,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.SkipException;
 import org.testng.annotations.Test;
 
-import base.TestBase;
+import base.BaseTest;
 import utilities.TestUtil;
 
-public class OpenAccountTest extends TestBase {
+public class OpenAccountTest extends BaseTest {
 	
 	@Test (dataProviderClass = TestUtil.class, dataProvider = "dp")
 	public void openAccountTest (Hashtable<String, String> data) {
@@ -20,8 +20,8 @@ public class OpenAccountTest extends TestBase {
 		// TODO como utilizar o istestrunnable para fazer verificacao da tab testsuite e da tab do test
 		click("bankManagerLoginBtn_CSS");
 		click("openAccountBtn_CSS");
-		select("customerNameDd_ID", data.get("customer"));
-		select("currencyDd_ID", data.get("currency"));
+		selectDropDown("customerNameDd_ID", data.get("customer"));
+		selectDropDown("currencyDd_ID", data.get("currency"));
 		click("processBtn_CSS");
 		
 		Alert alert = wait.until(ExpectedConditions.alertIsPresent());

@@ -1,12 +1,15 @@
 package pages;
 
-public class HomeLoginPage {
+import base.BasePage;
 
-    public void selectCustomerLoginButton() {
+public class HomeLoginPage extends BasePage {
+
+    public void clickCustomerLoginButton() {
+        baseTest.click("bankManagerLoginBtn_CSS");
 
     }
 
-    public void selectBankManagerLoginButton() {
+    public void clickBankManagerLoginButton() {
 
     }
 }

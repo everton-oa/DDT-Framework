@@ -11,12 +11,11 @@ import com.relevantcodes.extentreports.LogStatus;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import org.testng.Reporter;
 import org.testng.annotations.DataProvider;
 
-import base.TestBase;
+import base.BaseTest;
 
-public class TestUtil extends TestBase {
+public class TestUtil extends BaseTest {
 	
 	public static String screeshotPath;
 	public static String screeshotName;

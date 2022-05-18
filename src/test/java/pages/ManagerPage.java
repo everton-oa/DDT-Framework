@@ -1,12 +1,14 @@
 package pages;
 
-public class ManagerPage {
+import base.BasePage;
 
-    public void selectAddCustomerButton() {
+public class ManagerPage extends BasePage {
+
+    public void clickAddCustomerButton() {
 
     }
 
-    public void selectOpenAccountButton() {
+    public void clickOpenAccountButton() {
 
     }
 }

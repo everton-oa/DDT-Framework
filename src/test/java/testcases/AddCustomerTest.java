@@ -6,13 +6,12 @@ import java.util.Hashtable;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
-import org.testng.SkipException;
 import org.testng.annotations.Test;
 
-import base.TestBase;
+import base.BaseTest;
 import utilities.TestUtil;
 
-public class AddCustomerTest extends TestBase {
+public class AddCustomerTest extends BaseTest {
 
 	@Test (dataProviderClass = TestUtil.class, dataProvider = "dp")
 	public void addCustomerTest(Hashtable<String, String> data) throws IOException {
@@ -28,5 +27,7 @@ public class AddCustomerTest extends TestBase {
 		Alert alert = wait.until(ExpectedConditions.alertIsPresent());
 		Assert.assertTrue(alert.getText().contains(data.get("alerttext")));
 		alert.accept();
+
+		// TODO validar em customers se foi adicionado
 	}
 }

@@ -27,7 +27,7 @@ import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.assertEquals;
 
-public class TestBase {
+public class BaseTest {
 
     public static WebDriver driver;
     public static Properties config = new Properties();
@@ -115,13 +115,13 @@ public class TestBase {
 
     public void type(String locator, String value) {
         if (locator.endsWith("_CSS")) {
+            driver.findElement(By.cssSelector(OR.getProperty(locator))).clear();
             driver.findElement(By.cssSelector(OR.getProperty(locator))).sendKeys(value);
-            driver.findElement(By.cssSelector(OR.getProperty(locator))).clear();
         } else if (locator.endsWith("_XPATH")) {
-            driver.findElement(By.cssSelector(OR.getProperty(locator))).clear();
+            driver.findElement(By.xpath(OR.getProperty(locator))).clear();
             driver.findElement(By.xpath(OR.getProperty(locator))).sendKeys(value);
         } else if (locator.endsWith("_ID")) {
-            driver.findElement(By.cssSelector(OR.getProperty(locator))).clear();
+            driver.findElement(By.id(OR.getProperty(locator))).clear();
             driver.findElement(By.id(OR.getProperty(locator))).sendKeys(value);
         }
         test.log(LogStatus.INFO, "Typed " + value + " on " + locator);
@@ -131,7 +131,7 @@ public class TestBase {
 
     static WebElement dropdown;
 
-    public void select(String locator, String value) {
+    public void selectDropDown(String locator, String value) {
         if (locator.endsWith("_CSS")) {
             dropdown = driver.findElement(By.cssSelector(OR.getProperty(locator)));
         } else if (locator.endsWith("_XPATH")) {

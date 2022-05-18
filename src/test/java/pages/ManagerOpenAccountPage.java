@@ -1,6 +1,8 @@
 package pages;
 
-public class ManagerOpenAccountPage {
+import base.BasePage;
+
+public class ManagerOpenAccountPage extends BasePage {
 
     public void selectCustomerDropDown() {
 
@@ -10,7 +12,7 @@ public class ManagerOpenAccountPage {
 
     }
 
-    public void selectProcessButton() {
+    public void clickProcessButton() {
 
     }
 }
