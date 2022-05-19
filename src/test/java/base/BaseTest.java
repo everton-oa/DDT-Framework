@@ -14,6 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.SkipException;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import utilities.DriverFactory;
 import utilities.ExcelReader;
 import utilities.ExtentManager;
 import utilities.TestUtil;
@@ -69,27 +70,14 @@ public class BaseTest {
             e.printStackTrace();
         }
 
-        if (config.getProperty("browser").equalsIgnoreCase("chrome")) {
-            driver = new ChromeDriver();
-            log.info("Chrome driver lauched");
-        } else if (config.getProperty("browser").equalsIgnoreCase("firefox")) {
-            driver = new FirefoxDriver();
-            log.info("Firefox driver lauched");
-        }
-
-        // TODO como alterar de forma que eu possa utilizar diferentes urls?
-        driver.get(config.getProperty("testurl"));
+        driver = DriverFactory.getDriver();
+        wait = new WebDriverWait(driver, 4);
         log.info("URL opened");
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Integer.parseInt(config.getProperty("implicit.wait")), TimeUnit.SECONDS);
-        wait = new WebDriverWait(driver, 5);
     }
 
     @AfterMethod
     public void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
+        DriverFactory.killDriver();
         log.debug("Test completed\n");
         System.out.print(ANSI_GREEN + "###################################################################### \n\n" + ANSI_RESET);
     }
