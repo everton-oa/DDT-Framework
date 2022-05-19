@@ -5,10 +5,7 @@ import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.SkipException;
@@ -27,10 +24,10 @@ import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.assertEquals;
+import static utilities.DriverFactory.getDriver;
 
 public class BaseTest {
 
-    public static WebDriver driver;
     public static Properties config = new Properties();
     public static Properties OR = new Properties();
     public static FileInputStream fis;
@@ -70,8 +67,10 @@ public class BaseTest {
             e.printStackTrace();
         }
 
-        driver = DriverFactory.getDriver();
-        wait = new WebDriverWait(driver, 4);
+        getDriver().manage().timeouts().implicitlyWait(Integer.parseInt(config.getProperty("implicit.wait")), TimeUnit.SECONDS);
+        getDriver().manage().window().maximize();
+        getDriver().get(config.getProperty("testurl"));
+        wait = new WebDriverWait(getDriver(), 5);
         log.info("URL opened");
     }
 
@@ -89,11 +88,11 @@ public class BaseTest {
 
     public void click(String locator) {
         if (locator.endsWith("_CSS")) {
-            driver.findElement(By.cssSelector(OR.getProperty(locator))).click();
+            getDriver().findElement(By.cssSelector(OR.getProperty(locator))).click();
         } else if (locator.endsWith("_XPATH")) {
-            driver.findElement(By.xpath(OR.getProperty(locator))).click();
+            getDriver().findElement(By.xpath(OR.getProperty(locator))).click();
         } else if (locator.endsWith("_ID")) {
-            driver.findElement(By.id(OR.getProperty(locator))).click();
+            getDriver().findElement(By.id(OR.getProperty(locator))).click();
         }
         test.log(LogStatus.INFO, "Clicked on " + locator);
         log.debug("Clicked on " + locator);
@@ -103,14 +102,14 @@ public class BaseTest {
 
     public void type(String locator, String value) {
         if (locator.endsWith("_CSS")) {
-            driver.findElement(By.cssSelector(OR.getProperty(locator))).clear();
-            driver.findElement(By.cssSelector(OR.getProperty(locator))).sendKeys(value);
+            getDriver().findElement(By.cssSelector(OR.getProperty(locator))).clear();
+            getDriver().findElement(By.cssSelector(OR.getProperty(locator))).sendKeys(value);
         } else if (locator.endsWith("_XPATH")) {
-            driver.findElement(By.xpath(OR.getProperty(locator))).clear();
-            driver.findElement(By.xpath(OR.getProperty(locator))).sendKeys(value);
+            getDriver().findElement(By.xpath(OR.getProperty(locator))).clear();
+            getDriver().findElement(By.xpath(OR.getProperty(locator))).sendKeys(value);
         } else if (locator.endsWith("_ID")) {
-            driver.findElement(By.id(OR.getProperty(locator))).clear();
-            driver.findElement(By.id(OR.getProperty(locator))).sendKeys(value);
+            getDriver().findElement(By.id(OR.getProperty(locator))).clear();
+            getDriver().findElement(By.id(OR.getProperty(locator))).sendKeys(value);
         }
         test.log(LogStatus.INFO, "Typed " + value + " on " + locator);
         log.debug("Typed " + value + " on " + locator);
@@ -121,11 +120,11 @@ public class BaseTest {
 
     public void selectDropDown(String locator, String value) {
         if (locator.endsWith("_CSS")) {
-            dropdown = driver.findElement(By.cssSelector(OR.getProperty(locator)));
+            dropdown = getDriver().findElement(By.cssSelector(OR.getProperty(locator)));
         } else if (locator.endsWith("_XPATH")) {
-            dropdown = driver.findElement(By.xpath(OR.getProperty(locator)));
+            dropdown = getDriver().findElement(By.xpath(OR.getProperty(locator)));
         } else if (locator.endsWith("_ID")) {
-            dropdown = driver.findElement(By.id(OR.getProperty(locator)));
+            dropdown = getDriver().findElement(By.id(OR.getProperty(locator)));
         }
 
         Select select = new Select(dropdown);
@@ -138,7 +137,7 @@ public class BaseTest {
 
     public boolean isElementPresent(By by) {
         try {
-            driver.findElement(by);
+            getDriver().findElement(by);
             return true;
         } catch (NoSuchElementException e) {
             return false;

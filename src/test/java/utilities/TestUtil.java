@@ -15,6 +15,8 @@ import org.testng.annotations.DataProvider;
 
 import base.BaseTest;
 
+import static utilities.DriverFactory.getDriver;
+
 public class TestUtil extends BaseTest {
 	
 	public static String screeshotPath;
@@ -22,7 +24,7 @@ public class TestUtil extends BaseTest {
 	
 	public static void captureScreenShoot() throws IOException {
 
-		File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+		File scrFile = ((TakesScreenshot)getDriver()).getScreenshotAs(OutputType.FILE);
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
 		screeshotName = simpleDateFormat.format(new Date())+".jpg";
 		screeshotPath = System.getProperty("user.dir") + "/target/surefire-reports/html/screenshot/";
