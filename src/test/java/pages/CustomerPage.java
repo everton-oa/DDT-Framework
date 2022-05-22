@@ -1,10 +1,9 @@
 package pages;
 
-import base.BasePage;
+import base.PageBase;
 
-public class CustomerPage extends BasePage {
+public class CustomerPage extends PageBase {
 
-    // TODO Inicializar OR aqui para usar locators
     // TODO Adicionar retorno para a page que a action vai levar o user
 
     public void selectYourNameDropDown() {

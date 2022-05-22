@@ -1,8 +1,8 @@
 package pages;
 
-import base.BasePage;
+import base.PageBase;
 
-public class ManagerOpenAccountPage extends BasePage {
+public class ManagerOpenAccountPage extends PageBase {
 
     public void selectCustomerDropDown() {
 

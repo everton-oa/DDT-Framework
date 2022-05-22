@@ -8,10 +8,10 @@ import org.testng.ITestResult;
 
 import com.relevantcodes.extentreports.LogStatus;
 
-import base.BaseTest;
+import base.TestBase;
 import utilities.TestUtil;
 
-public class CustomListener extends BaseTest implements ITestListener{
+public class CustomListener extends TestBase implements ITestListener{
 
 	public void onTestStart(ITestResult result) {
 		test = rep.startTest(result.getName());

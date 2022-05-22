@@ -13,6 +13,7 @@ public class DriverFactory {
     public static WebDriver getDriver() {
         if (driver == null) {
             driver = new ChromeDriver();
+            // TODO adicionar logica para escolher driver chrome/firefox/ie
         }
         return driver;
     }
