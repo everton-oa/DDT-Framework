@@ -4,11 +4,14 @@ import base.PageBase;
 
 public class ManagerPage extends PageBase {
 
-    public void clickAddCustomerButton() {
+    public ManagerAddCustomerPage clickAddCustomerButton() {
         click("addCustomerBtn_CSS");
+        return new ManagerAddCustomerPage();
     }
 
-    public void clickOpenAccountButton() {
+    public ManagerOpenAccountPage clickOpenAccountButton() {
+        click("openAccountBtn_CSS");
+        return new ManagerOpenAccountPage();
 
     }
 }
