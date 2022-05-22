@@ -55,7 +55,7 @@ public class TestBase {
         }
         try {
             OR.load(fis);
-            log.info("OR loaded");
+            log.info("OR loaded\n");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -63,7 +63,6 @@ public class TestBase {
 
     @BeforeMethod
     public void setUp() {
-        getDriver().get(config.getProperty("testurl"));
         getDriver().manage().window().maximize();
         getDriver().manage().timeouts().implicitlyWait(Integer.parseInt(config.getProperty("implicit.wait")), TimeUnit.SECONDS);
         wait = new WebDriverWait(getDriver(), 5);

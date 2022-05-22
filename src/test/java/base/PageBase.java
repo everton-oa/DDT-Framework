@@ -20,6 +20,10 @@ public class PageBase {
      *
      */
 
+    public void openPage(String pageUrl) {
+        getDriver().get(pageUrl);
+    }
+
     public void click(String locator) {
         if (locator.endsWith("_CSS")) {
             getDriver().findElement(By.cssSelector(TestBase.OR.getProperty(locator))).click();

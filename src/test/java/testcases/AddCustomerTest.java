@@ -18,7 +18,8 @@ public class AddCustomerTest extends TestBase {
     public void addCustomerTest(Hashtable<String, String> data) {
 //		isTestRunnable(data.get("runmode"));
 //		verifyEquals("1", "2");
-        homeLoginPage.clickBankManagerLoginButton()
+        homeLoginPage.openHomePageUrl(config.getProperty("testurl"))
+                .clickBankManagerLoginButton()
                 .clickAddCustomerButton()
                 .typeFirstName(data.get("firstname"))
                 .typeLastName(data.get("lastname"))

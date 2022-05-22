@@ -18,8 +18,8 @@ public class OpenAccountTest extends TestBase {
 //		if (!TestUtil.isTestRunnable("OpenAccountTest", excel)) {
 //			throw new SkipException("");
 //		}
-
-		homeLoginPage.clickBankManagerLoginButton()
+		homeLoginPage.openHomePageUrl(config.getProperty("testurl"))
+				.clickBankManagerLoginButton()
 				.clickOpenAccountButton()
 				.selectCustomerDropDown(data.get("customer"))
 				.selectCurrencyDropDown(data.get("currency"))
