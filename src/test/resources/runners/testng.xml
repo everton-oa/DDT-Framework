@@ -7,12 +7,6 @@
 <listener class-name="listeners.CustomListener"/>
 </listeners>
 
-	<test name="Login Test">
-		<classes>
-			<class name="testcases.BankManagerLoginTest" />
-		</classes>
-	</test> <!-- Test -->
-
 	<test name="Add Customer Test">
 		<classes>
 			<class name="testcases.AddCustomerTest" />

@@ -9,7 +9,8 @@ public class HomeLoginPage extends PageBase {
 
     }
 
-    public void clickBankManagerLoginButton() {
+    public ManagerPage clickBankManagerLoginButton() {
         click("bankManagerLoginBtn_CSS");
+        return new ManagerPage();
     }
 }

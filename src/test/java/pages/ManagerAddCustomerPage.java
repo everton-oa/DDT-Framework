@@ -4,16 +4,19 @@ import base.PageBase;
 
 public class ManagerAddCustomerPage extends PageBase {
 
-    public void typeFirstName(String firstName) {
+    public ManagerAddCustomerPage typeFirstName(String firstName) {
         type("firstNameField_CSS", firstName);
+        return this;
     }
 
-    public void typeLastName(String lastName) {
+    public ManagerAddCustomerPage typeLastName(String lastName) {
         type("lastNameField_XPATH", lastName);
+        return this;
     }
 
-    public void typePostCode( String postCode) {
+    public ManagerAddCustomerPage typePostCode( String postCode) {
         type("postCodeField_CSS", postCode);
+        return this;
     }
 
     public void clickAddCustomerButton() {
