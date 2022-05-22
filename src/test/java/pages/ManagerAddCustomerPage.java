@@ -1,22 +1,22 @@
 package pages;
 
-import base.BasePage;
+import base.PageBase;
 
-public class ManagerAddCustomerPage extends BasePage {
+public class ManagerAddCustomerPage extends PageBase {
 
-    public void typeFirstName() {
-
+    public void typeFirstName(String firstName) {
+        type("firstNameField_CSS", firstName);
     }
 
-    public void typeLastName() {
-
+    public void typeLastName(String lastName) {
+        type("lastNameField_XPATH", lastName);
     }
 
-    public void typePostCode() {
-
+    public void typePostCode( String postCode) {
+        type("postCodeField_CSS", postCode);
     }
 
     public void clickAddCustomerButton() {
-
+        click("addBtn_CSS");
     }
 }

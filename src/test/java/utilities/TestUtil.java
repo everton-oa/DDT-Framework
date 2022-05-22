@@ -13,11 +13,11 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.testng.annotations.DataProvider;
 
-import base.BaseTest;
+import base.TestBase;
 
 import static utilities.DriverFactory.getDriver;
 
-public class TestUtil extends BaseTest {
+public class TestUtil extends TestBase {
 	
 	public static String screeshotPath;
 	public static String screeshotName;
@@ -28,6 +28,8 @@ public class TestUtil extends BaseTest {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
 		screeshotName = simpleDateFormat.format(new Date())+".jpg";
 		screeshotPath = System.getProperty("user.dir") + "/target/surefire-reports/html/screenshot/";
+		// TODO alterar separators para funcionar em qualquer sistema operacional
+//		screeshotPath = System.getProperty("user.dir") +File.separator+"target/surefire-reports/html/screenshot/";
 		FileUtils.copyFile(scrFile, new File(screeshotPath + screeshotName));
 
 		test.log(LogStatus.INFO, "Screenshot captured");
