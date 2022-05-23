@@ -56,7 +56,7 @@ public class TestUtil extends TestBase {
 		return data;
 	}
 	
-	public static boolean isTestRunnable(String testName, ExcelReader excel) {
+	public static boolean isTestCaseRunnable(String testName, ExcelReader excel) {
 		String sheetName = "testSuite";
 		int rows = excel.getRowCount(sheetName);
 		

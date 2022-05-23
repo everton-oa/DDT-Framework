@@ -106,4 +106,11 @@ public class PageBase {
             TestUtil.captureScreenShoot();
         }
     }
+
+    /*
+     * Tabelas
+     *
+     */
+
+
 }
