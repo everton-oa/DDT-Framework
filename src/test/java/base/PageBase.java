@@ -32,8 +32,8 @@ public class PageBase {
         } else if (locator.endsWith("_ID")) {
             getDriver().findElement(By.id(TestBase.OR.getProperty(locator))).click();
         }
-        TestBase.test.log(LogStatus.INFO, "Clicked on " + locator);
-        TestBase.log.debug("Clicked on " + locator);
+//        TestBase.test.log(LogStatus.INFO, "Clicked on " + locator);
+//        TestBase.log.debug("Clicked on " + locator);
         System.out.print(TestBase.ANSI_GREEN + "Clicked on " + locator + "\n" + TestBase.ANSI_RESET);
     }
 
@@ -48,8 +48,8 @@ public class PageBase {
             getDriver().findElement(By.id(TestBase.OR.getProperty(locator))).clear();
             getDriver().findElement(By.id(TestBase.OR.getProperty(locator))).sendKeys(value);
         }
-        TestBase.test.log(LogStatus.INFO, "Typed " + value + " on " + locator);
-        TestBase.log.debug("Typed " + value + " on " + locator);
+//        TestBase.test.log(LogStatus.INFO, "Typed " + value + " on " + locator);
+//        TestBase.log.debug("Typed " + value + " on " + locator);
         System.out.print(TestBase.ANSI_GREEN + "Typed " + value + " on " + locator + "\n" + TestBase.ANSI_RESET);
     }
 
@@ -67,8 +67,8 @@ public class PageBase {
         Select select = new Select(dropdown);
         select.selectByVisibleText(value);
 
-        TestBase.test.log(LogStatus.INFO, "Selected " + value + " from " + locator);
-        TestBase.log.debug("Selected " + value + " from " + locator);
+//        TestBase.test.log(LogStatus.INFO, "Selected " + value + " from " + locator);
+//        TestBase.log.debug("Selected " + value + " from " + locator);
         System.out.print(TestBase.ANSI_GREEN + "Selected " + value + " from " + locator + "\n" + TestBase.ANSI_RESET);
     }
 
@@ -95,12 +95,12 @@ public class PageBase {
     public void verifyEquals(String actual, String expected) throws IOException {
         try {
             assertEquals(actual, expected);
-            TestBase.test.log(LogStatus.PASS, "Verification successfully executed - Actual result: " + actual + " => Expected result: " + expected);
-            TestBase.log.debug("Verification successfully executed - Actual result: " + actual + " => Expected result: " + expected);
+//            TestBase.test.log(LogStatus.PASS, "Verification successfully executed - Actual result: " + actual + " => Expected result: " + expected);
+//            TestBase.log.debug("Verification successfully executed - Actual result: " + actual + " => Expected result: " + expected);
             System.out.print(TestBase.ANSI_GREEN + "Verification successfully executed - Actual result: " + actual + " => Expected result: " + expected + "\n" + TestBase.ANSI_RESET);
         } catch (Throwable failure) {
-            TestBase.test.log(LogStatus.WARNING, "Verification failed - " + failure.getMessage());
-            TestBase.log.debug("Verification failed - " + failure.getMessage());
+//            TestBase.test.log(LogStatus.WARNING, "Verification failed - " + failure.getMessage());
+//            TestBase.log.debug("Verification failed - " + failure.getMessage());
             System.out.print(TestBase.ANSI_RED + "Verification failed - " + failure.getMessage() + "\n" + TestBase.ANSI_RESET);
 
             TestUtil.captureScreenShoot();

@@ -65,7 +65,7 @@ public class TestBase {
     public void setUp() {
         getDriver().manage().window().maximize();
         getDriver().manage().timeouts().implicitlyWait(Integer.parseInt(config.getProperty("implicit.wait")), TimeUnit.SECONDS);
-        wait = new WebDriverWait(getDriver(), 5);
+        wait = new WebDriverWait(getDriver(), 2);
         log.info("URL opened");
     }
 
