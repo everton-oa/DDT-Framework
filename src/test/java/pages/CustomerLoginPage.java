@@ -2,7 +2,7 @@ package pages;
 
 import base.PageBase;
 
-public class CustomerPage extends PageBase {
+public class CustomerLoginPage extends PageBase {
 
     // TODO Adicionar retorno para a page que a action vai levar o user
 

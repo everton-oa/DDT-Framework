@@ -12,6 +12,7 @@ public class DriverFactory {
 
     public static WebDriver getDriver() {
         if (driver == null) {
+            System.setProperty("webdriver.chrome.driver", "/home/everton/apps/drivers/chromedriver");
             driver = new ChromeDriver();
             // TODO adicionar logica para escolher driver chrome/firefox/ie
         }

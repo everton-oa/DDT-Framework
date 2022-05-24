@@ -12,6 +12,10 @@ public class ManagerPage extends PageBase {
     public ManagerOpenAccountPage clickOpenAccountButton() {
         click("openAccountBtn_CSS");
         return new ManagerOpenAccountPage();
+    }
 
+    public ManagerOpenAccountPage clickCustomersButton() {
+        click("customersBtn_CSS");
+        return new ManagerOpenAccountPage();
     }
 }
