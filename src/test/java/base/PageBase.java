@@ -1,13 +1,14 @@
 package base;
 
-import com.relevantcodes.extentreports.LogStatus;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.SkipException;
+import utilities.DriverFactory;
 import utilities.TestUtil;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 import static org.testng.Assert.assertEquals;
@@ -111,6 +112,44 @@ public class PageBase {
      * Tabelas
      *
      */
+    public WebElement getTableCell(String col, String value, String colunaBotao, String tableLocator) {
+        WebElement table = DriverFactory.getDriver().findElement(By.xpath("//table[contains(@class,'table table-bordered table-striped')]"));
+        int idCol = getColIndex(col, table);
+        int idRow = getRowIndex(value, table, idCol);
 
+        int idColunaBotao = getColIndex(colunaBotao, table);
 
+        WebElement cell = table.findElement(By.xpath("./tbody/tr[" + idRow + "]/td[" + idColunaBotao + "]"));
+        return cell;
+    }
+
+    public String getTextCell(String col, String value, String colunaBotao, String tableLocator) {
+        WebElement cell = getTableCell(col, value, colunaBotao, tableLocator);
+        return cell.getText();
+    }
+
+    public int getRowIndex(String value, WebElement table, int idCol) {
+        List<WebElement> rows = table.findElements(By.xpath("./tbody/tr/td[" + idCol + "]"));
+
+        int idRow = -1;
+        for (int i = 0; i < rows.size(); i++) {
+            if (rows.get(i).getText().equalsIgnoreCase(value)) {
+                idRow = i + 1;
+                break;
+            }
+        }
+        return idRow;
+    }
+
+    public int getColIndex(String col, WebElement table) {
+        List<WebElement> cols = table.findElements(By.xpath(".//thead/tr/td"));
+        int idCol = -1;
+        for (int i = 0; i < cols.size(); i++) {
+            if (cols.get(i).getText().equalsIgnoreCase(col)) {
+                idCol = i + 1;
+                break;
+            }
+        }
+        return idCol;
+    }
 }
