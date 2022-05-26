@@ -23,5 +23,4 @@ public class ReportFailedAndSkippedTest extends TestBase {
 	public void ReportSkippedTest() {
 		throw new SkipException("");
 	}
-
 }
