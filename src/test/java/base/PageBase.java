@@ -107,26 +107,37 @@ public class PageBase {
         }
     }
 
+    public void assertStringEquals(String actual, String expected) throws IOException {
+        try {
+            assertEquals(actual, expected);
+//            TestBase.test.log(LogStatus.PASS, "Verification successfully executed - Actual result: " + actual + " => Expected result: " + expected);
+//            TestBase.log.debug("Verification successfully executed - Actual result: " + actual + " => Expected result: " + expected);
+            System.out.print(TestBase.ANSI_GREEN + "Verification successfully executed - Actual result: " + actual + " => Expected result: " + expected + "\n" + TestBase.ANSI_RESET);
+        } catch (Throwable failure) {
+//            TestBase.test.log(LogStatus.WARNING, "Verification failed - " + failure.getMessage());
+//            TestBase.log.debug("Verification failed - " + failure.getMessage());
+            System.out.print(TestBase.ANSI_RED + "Verification failed - " + failure.getMessage() + "\n" + TestBase.ANSI_RESET);
+
+            TestUtil.captureScreenShoot();
+        }
+    }
+
     /*
      * Tabelas
      *
      */
-    public WebElement getTableCell(String col, String value, String colunaBotao, String tableLocator) {
+    // get to one specific table cell
+    public WebElement getTableCell(String col, String value, String colValue, String tableLocator) {
         WebElement table = getDriver().findElement(By.xpath(TestBase.OR.getProperty(tableLocator)));
         int idCol = getColIndex(col, table);
         int idRow = getRowIndex(value, table, idCol);
 
-        int idColunaBotao = getColIndex(colunaBotao, table);
+        int idColumn = getColIndex(colValue, table);
 
-        WebElement cell = table.findElement(By.xpath("./tbody/tr[" + idRow + "]/td[" + idColunaBotao + "]"));
-        return cell;
+        return table.findElement(By.xpath("./tbody/tr[" + idRow + "]/td[" + idColumn + "]"));
     }
 
-    public String getTextCell(String col, String value, String colunaBotao, String tableLocator) {
-        WebElement cell = getTableCell(col, value, colunaBotao, tableLocator);
-        return cell.getText();
-    }
-
+    // return the number of one specific row
     public int getRowIndex(String value, WebElement table, int idCol) {
         List<WebElement> rows = table.findElements(By.xpath("./tbody/tr/td[" + idCol + "]"));
 
@@ -140,6 +151,7 @@ public class PageBase {
         return idRow;
     }
 
+    // return the number of one specific column
     public int getColIndex(String col, WebElement table) {
         List<WebElement> cols = table.findElements(By.xpath(".//thead/tr/td"));
         int idCol = -1;
@@ -150,5 +162,15 @@ public class PageBase {
             }
         }
         return idCol;
+    }
+
+    public String getTextCell(String col, String value, String colValue, String tableLocator) {
+        WebElement cell = getTableCell(col, value, colValue, tableLocator);
+        return cell.getText();
+    }
+
+    public void clickCellButton(String col, String value, String colValue, String tableLocator) {
+        WebElement cell = getTableCell(col, value, colValue, tableLocator);
+        cell.click();
     }
 }

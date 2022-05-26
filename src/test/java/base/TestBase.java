@@ -3,6 +3,7 @@ package base;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -63,7 +64,8 @@ public class TestBase {
 
     @BeforeMethod
     public void setUp() {
-        getDriver().manage().window().maximize();
+//        getDriver().manage().window().maximize();
+        getDriver().manage().window().setPosition(new Point(2000, 1));
         getDriver().manage().timeouts().implicitlyWait(Integer.parseInt(config.getProperty("implicit.wait")), TimeUnit.SECONDS);
         wait = new WebDriverWait(getDriver(), 2);
         log.info("URL opened");

@@ -10,6 +10,7 @@ import pages.ManagerCustomersPage;
 import pages.ManagerPage;
 import utilities.TestUtil;
 
+import java.io.IOException;
 import java.util.Hashtable;
 
 public class AddCustomerTest extends TestBase {
@@ -19,7 +20,7 @@ public class AddCustomerTest extends TestBase {
     ManagerCustomersPage managerCustomersPage = new ManagerCustomersPage();
 
     @Test(dataProviderClass = TestUtil.class, dataProvider = "dp")
-    public void addCustomerTest(Hashtable<String, String> data) {
+    public void addCustomerTest(Hashtable<String, String> data) throws IOException {
         homeLoginPage.openHomePageUrl(config.getProperty("testurl"))
                 .clickBankManagerLoginButton()
                 .clickAddCustomerButton()
@@ -34,6 +35,6 @@ public class AddCustomerTest extends TestBase {
 
         String customerFirstName = managerPage.clickCustomersButton()
                         .getCustomerByFirstName(data.get("firstname"));
-        Assert.assertEquals(data.get("firstname"), customerFirstName);
+        managerCustomersPage.assertCustumerIsAdded(data.get("firstname"), customerFirstName);
     }
 }
