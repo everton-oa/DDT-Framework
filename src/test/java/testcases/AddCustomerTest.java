@@ -32,7 +32,8 @@ public class AddCustomerTest extends TestBase {
         Assert.assertTrue(alert.getText().contains(data.get("alerttext")));
         alert.accept();
 
-        managerPage.clickCustomersButton();
-        Assert.assertEquals(data.get("firstname"), managerCustomersPage.getCustomerByFirstName(data.get("firstname")));
+        String customerFirstName = managerPage.clickCustomersButton()
+                        .getCustomerByFirstName(data.get("firstname"));
+        Assert.assertEquals(data.get("firstname"), customerFirstName);
     }
 }

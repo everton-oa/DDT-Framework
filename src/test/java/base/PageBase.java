@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.SkipException;
-import utilities.DriverFactory;
 import utilities.TestUtil;
 
 import java.io.IOException;
@@ -113,7 +112,7 @@ public class PageBase {
      *
      */
     public WebElement getTableCell(String col, String value, String colunaBotao, String tableLocator) {
-        WebElement table = DriverFactory.getDriver().findElement(By.xpath("//table[contains(@class,'table table-bordered table-striped')]"));
+        WebElement table = getDriver().findElement(By.xpath(TestBase.OR.getProperty(tableLocator)));
         int idCol = getColIndex(col, table);
         int idRow = getRowIndex(value, table, idCol);
 

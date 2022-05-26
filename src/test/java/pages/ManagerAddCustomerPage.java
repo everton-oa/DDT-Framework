@@ -14,7 +14,7 @@ public class ManagerAddCustomerPage extends PageBase {
         return this;
     }
 
-    public ManagerAddCustomerPage typePostCode( String postCode) {
+    public ManagerAddCustomerPage typePostCode(String postCode) {
         type("postCodeField_CSS", postCode);
         return this;
     }
