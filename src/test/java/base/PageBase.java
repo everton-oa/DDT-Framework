@@ -112,11 +112,11 @@ public class PageBase {
             assertEquals(actual, expected);
 //            TestBase.test.log(LogStatus.PASS, "Verification successfully executed - Actual result: " + actual + " => Expected result: " + expected);
 //            TestBase.log.debug("Verification successfully executed - Actual result: " + actual + " => Expected result: " + expected);
-            System.out.print(TestBase.ANSI_GREEN + "Verification successfully executed - Actual result: " + actual + " => Expected result: " + expected + "\n" + TestBase.ANSI_RESET);
+            System.out.print(TestBase.ANSI_GREEN + "Validation successfully executed - Actual result: " + actual + " => Expected result: " + expected + "\n" + TestBase.ANSI_RESET);
         } catch (Throwable failure) {
 //            TestBase.test.log(LogStatus.WARNING, "Verification failed - " + failure.getMessage());
 //            TestBase.log.debug("Verification failed - " + failure.getMessage());
-            System.out.print(TestBase.ANSI_RED + "Verification failed - " + failure.getMessage() + "\n" + TestBase.ANSI_RESET);
+            System.out.print(TestBase.ANSI_RED + "Validation failed - " + failure.getMessage() + "\n" + TestBase.ANSI_RESET);
 
             TestUtil.captureScreenShoot();
         }
