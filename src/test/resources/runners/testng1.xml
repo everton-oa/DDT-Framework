@@ -7,7 +7,7 @@
 
 	<test name="Add Customer Test">
 		<classes>
-			<class name="testcases.AddCustomerTest" />
+			<class name="testcases.CustomerTest" />
 		</classes>
 	</test> <!-- Test -->
 

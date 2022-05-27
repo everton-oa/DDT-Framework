@@ -13,7 +13,7 @@ import utilities.TestUtil;
 import java.io.IOException;
 import java.util.Hashtable;
 
-public class AddCustomerTest extends TestBase {
+public class CustomerTest extends TestBase {
 
     HomeLoginPage homeLoginPage = new HomeLoginPage();
     ManagerPage managerPage = new ManagerPage();
@@ -36,5 +36,24 @@ public class AddCustomerTest extends TestBase {
         String customerFirstName = managerPage.clickCustomersButton()
                         .getCustomerByFirstName(data.get("firstname"));
         managerCustomersPage.assertCustumerIsAdded(data.get("firstname"), customerFirstName);
+    }
+
+    @Test(dataProviderClass = TestUtil.class, dataProvider = "dp")
+    public void removeCustomerTest(Hashtable<String, String> data) {
+        homeLoginPage = new HomeLoginPage();
+        homeLoginPage.openHomePageUrl(config.getProperty("testurl"))
+                .clickBankManagerLoginButton()
+                .clickAddCustomerButton()
+                .typeFirstName(data.get("firstname"))
+                .typeLastName(data.get("lastname"))
+                .typePostCode(data.get("postcode"))
+                .clickAddCustomerButton();
+
+        Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+        Assert.assertTrue(alert.getText().contains(data.get("alerttext")));
+        alert.accept();
+
+        managerPage.clickCustomersButton();
+        managerCustomersPage.deleteCustomerByFirstName(data.get("firstname"));
     }
 }
