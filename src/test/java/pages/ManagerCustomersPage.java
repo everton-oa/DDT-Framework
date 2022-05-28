@@ -14,7 +14,6 @@ public class ManagerCustomersPage extends PageBase {
         clickCellButton("First Name", firstName, "Delete Customer", "customersTable_XPATH");
     }
 
-
     public void assertCustumerIsAdded(String expectedFirstname, String actualFirstname) throws IOException {
         assertStringEquals(expectedFirstname, actualFirstname);
 

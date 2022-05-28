@@ -67,7 +67,6 @@ public class ExcelReader {
             sheet = workbook.getSheetAt(index);
             row = sheet.getRow(0);
             for (int i = 0; i < row.getLastCellNum(); i++) {
-                //System.out.println(row.getCell(i).getStringCellValue().trim());
                 if (row.getCell(i).getStringCellValue().trim().equals(colName.trim()))
                     col_Num = i;
             }
@@ -167,7 +166,6 @@ public class ExcelReader {
             sheet = workbook.getSheetAt(index);
             row = sheet.getRow(0);
             for (int i = 0; i < row.getLastCellNum(); i++) {
-                //System.out.println(row.getCell(i).getStringCellValue().trim());
                 if (row.getCell(i).getStringCellValue().trim().equals(colName))
                     colNum = i;
             }
@@ -228,7 +226,6 @@ public class ExcelReader {
             hlink_font.setUnderline(XSSFFont.U_SINGLE);
             hlink_font.setColor(IndexedColors.BLUE.getIndex());
             hlink_style.setFont(hlink_font);
-            //hlink_style.setWrapText(true);
 
             XSSFHyperlink link = createHelper.createHyperlink(HyperlinkType.FILE);
             link.setAddress(url);
@@ -324,7 +321,6 @@ public class ExcelReader {
             sheet = workbook.getSheet(sheetName);
             XSSFCellStyle style = workbook.createCellStyle();
             style.setFillForegroundColor(HSSFColor.HSSFColorPredefined.GREY_40_PERCENT.getIndex());
-            //XSSFCreationHelper createHelper = workbook.getCreationHelper();
             style.setFillPattern(FillPatternType.NO_FILL);
 
             for (int i = 0; i < getRowCount(sheetName); i++) {
@@ -378,7 +374,6 @@ public class ExcelReader {
     }
 
 
-    //String sheetName, String testCaseName,String keyword ,String URL,String message
     public boolean addHyperLink(String sheetName, String screenShotColName, String testCaseName, int index, String url, String message) {
 
         url = url.replace('\\', '/');

@@ -79,12 +79,7 @@ public class TestBase {
     }
 }
 
-// TODO utilizar comentarios
-// TODO corrigir a forma de pegar a screenshot e a pasta em que as screenshots ficam salvas aula 306
-// TODO colocar documentacao no codigo para saber o que cada coisa faz
 // TODO implementar novos assertions
-// TODO criar as keywords necessárias(verificar framework srbarriga)
 // TODO adicionar informacoes ao readme - como clonar e executar o projeto
 // TODO adicionar informacoes sobre como acessar os relatorios / logs depois de executar os testes
 // TODO criar documentação para os metodos e para que eles servem. adicionar comentarios sobre o que é necessario alterar para utilizar em outro projeto ex: paths ou variaveis
-// TODO adicionar 2 testes extras para ter exemplos de skip e fail nos reports

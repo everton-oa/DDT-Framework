@@ -50,10 +50,10 @@ public class CustomerTest extends TestBase {
                 .clickAddCustomerButton();
 
         Alert alert = wait.until(ExpectedConditions.alertIsPresent());
-        Assert.assertTrue(alert.getText().contains(data.get("alerttext")));
         alert.accept();
 
         managerPage.clickCustomersButton();
         managerCustomersPage.deleteCustomerByFirstName(data.get("firstname"));
+        // TODO Validar que customer foi removido
     }
 }
